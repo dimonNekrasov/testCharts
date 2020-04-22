@@ -10,7 +10,7 @@ export class GeoService {
   }
 
   getCountry() {
-    return this.http.get('http://ipinfo.io', {
+    return this.http.get('https://ipinfo.io', {
       headers: {
         'Authorization': `Bearer 85999150dbc886`
       }
