@@ -24,6 +24,7 @@ export class AllEventsComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     this.dataSource = new MatTableDataSource(this.data);
     this.displayedColumns = Object.keys(this.data[0]);
+    this.displayedColumns.splice(this.displayedColumns.indexOf('userAgent'), 1, 'OS', 'device');
   }
 
   ngOnInit(): void {

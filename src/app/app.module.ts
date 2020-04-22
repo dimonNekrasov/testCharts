@@ -22,6 +22,8 @@ import {AllEventsComponent} from './components/all-events/all-events.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { OsPipe } from './pipes/os.pipe';
+import { DevicePipe } from './pipes/device.pipe';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     PurchaseComponent,
     ManuallyEventComponent,
     AutomaticEventComponent,
-    AllEventsComponent
+    AllEventsComponent,
+    OsPipe,
+    DevicePipe
   ],
   imports: [
     BrowserModule,
