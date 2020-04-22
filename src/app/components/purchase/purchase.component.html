@@ -1,0 +1,34 @@
+<div class="purchase-container">
+  <mat-form-field>
+    <mat-label>Filter by</mat-label>
+    <mat-select (valueChange)="filterBy($event)">
+      <mat-option *ngFor="let filter of filters" [value]="filter.value">
+        {{filter.title}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Sort by</mat-label>
+    <mat-select (valueChange)="sortBy($event, currentSortDirection)">
+      <mat-option *ngFor="let sortType of sortTypes" [value]="sortType.value">
+        {{sortType.title}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Sort direction</mat-label>
+    <mat-select (valueChange)="sortBy(currentSortType, $event)">
+      <mat-option *ngFor="let sortDirection of sortDirections" [value]="sortDirection.value">
+        {{sortDirection.title}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <ngx-charts-bar-horizontal [view]="chartView"
+                             [results]="chartResults"
+                             [xAxis]="true"
+                             [yAxis]="true" [showDataLabel]="true"></ngx-charts-bar-horizontal>
+</div>
+
+

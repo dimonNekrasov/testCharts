@@ -1,0 +1,133 @@
+<div class="tab-group-block">
+  <mat-radio-group aria-label="Select an option" (change)="changeGenerationType({method: $event})">
+    <mat-radio-button [checked]="currentEventGenerationType.method === 'update'" [value]="'update'">Update event
+    </mat-radio-button>
+    <mat-radio-button [checked]="currentEventGenerationType.method === 'new'" [value]="'new'">Create new event
+    </mat-radio-button>
+  </mat-radio-group>
+</div>
+
+<div class="tab-group-block">
+  <mat-radio-group aria-label="Select an option" (change)="changeGenerationType({frequency: $event})">
+    <mat-radio-button [checked]="currentEventGenerationType.frequency === 'interval'" [value]="'interval'">With
+      interval
+    </mat-radio-button>
+    <mat-radio-button [checked]="currentEventGenerationType.frequency === 'timeout'" [value]="'timeout'">With timeout
+    </mat-radio-button>
+  </mat-radio-group>
+</div>
+
+<div class="event-block">
+  <div *ngIf="currentEventGenerationType.method === 'update'">
+
+    <ng-template [ngIf]="currentEventGenerationType.frequency === 'interval'">
+      <mat-form-field>
+        <mat-label>interval</mat-label>
+        <input matInput type="number" [(ngModel)]="interval">
+      </mat-form-field>
+      <div *ngFor="let step of stepsUpdate">
+        <mat-form-field>
+          <mat-label>choose user ID</mat-label>
+          <mat-select [(value)]="step.id">
+            <mat-option *ngFor="let user of usersList" [value]="user.id">
+              {{user.id}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>choose event type</mat-label>
+          <mat-select [(value)]="step.eventType">
+            <mat-option *ngFor="let evt of eventsList" [value]="evt">
+              {{evt}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <button mat-raised-button class="step-button" color="primary" (click)="addStep()">ADD STEP</button>
+    </ng-template>
+
+    <ng-template [ngIf]="currentEventGenerationType.frequency === 'timeout'">
+      <div>
+        <mat-form-field>
+          <mat-label>timeout</mat-label>
+          <input matInput type="number" [(ngModel)]="timeout">
+        </mat-form-field>
+      </div>
+      <mat-form-field>
+        <mat-label>choose user ID</mat-label>
+        <mat-select [(value)]="currentEvent.id">
+          <mat-option *ngFor="let user of usersList" [value]="user.id">
+            {{user.id}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>choose event type</mat-label>
+        <mat-select [(value)]="currentEvent.eventType">
+          <mat-option *ngFor="let evt of eventsList" [value]="evt">
+            {{evt}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </ng-template>
+
+  </div>
+
+  <div *ngIf="currentEventGenerationType.method === 'new'">
+    <ng-template [ngIf]="currentEventGenerationType.frequency === 'interval'">
+      <div>
+        <mat-form-field>
+          <mat-label>interval</mat-label>
+          <input matInput type="number" [(ngModel)]="interval">
+        </mat-form-field>
+      </div>
+      <div *ngFor="let step of stepsCreate; index as i">
+        <mat-form-field>
+          <mat-label>batch size</mat-label>
+          <input matInput type="number" [(ngModel)]="step.batchSize">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>choose event type</mat-label>
+          <mat-select [(value)]="step.eventType">
+            <mat-option *ngFor="let evt of eventsList" [value]="evt">
+              {{evt}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <span>
+          <button mat-mini-fab color="warn" (click)="removeStep(i)">x</button>
+        </span>
+      </div>
+      <button mat-raised-button class="step-button" color="primary" (click)="addStep()">ADD STEP</button>
+    </ng-template>
+
+    <ng-template [ngIf]="currentEventGenerationType.frequency === 'timeout'">
+      <div>
+        <mat-form-field>
+          <mat-label>timeout</mat-label>
+          <input matInput type="number" [(ngModel)]="timeout">
+        </mat-form-field>
+      </div>
+      <mat-form-field>
+        <mat-label>batch size</mat-label>
+        <input matInput type="number" [(ngModel)]="batchLength">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>choose event type</mat-label>
+        <mat-select [(value)]="currentEvent.eventType">
+          <mat-option *ngFor="let evt of eventsList" [value]="evt">
+            {{evt}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </ng-template>
+  </div>
+
+  <button mat-raised-button class="event-button" color="accent"
+          (click)="generateEvent()">{{currentEventGenerationType.method === 'update' ? 'UPDATE' : 'CREATE'}}</button>
+</div>
+

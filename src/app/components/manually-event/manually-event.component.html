@@ -1,0 +1,50 @@
+<div class="tab-group-block">
+  <mat-radio-group aria-label="Select an option" (change)="changeGenerationType($event)">
+    <mat-radio-button [checked]="currentEventGenerationType === 'update'" [value]="'update'">Update event
+    </mat-radio-button>
+    <mat-radio-button [checked]="currentEventGenerationType === 'new'" [value]="'new'">Create new event
+    </mat-radio-button>
+  </mat-radio-group>
+</div>
+<div class="event-block">
+  <div *ngIf="currentEventGenerationType === 'new'">
+
+    <mat-form-field>
+      <mat-label>choose event type</mat-label>
+      <mat-select [(value)]="currentEvent.eventType">
+        <mat-option *ngFor="let evt of eventsList" [value]="evt">
+          {{evt}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="currentEventGenerationType === 'update'">
+    <div>
+      <mat-form-field>
+        <mat-label>choose user ID</mat-label>
+        <mat-select [(value)]="currentEvent.id">
+          <mat-option *ngFor="let user of usersList" [value]="user.id">
+            {{user.id}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>choose event type</mat-label>
+        <mat-select [(value)]="currentEvent.eventType">
+          <mat-option *ngFor="let evt of eventsList" [value]="evt">
+            {{evt}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <button mat-raised-button color="accent" class="event-button"
+          (click)="createEvent()">{{currentEventGenerationType === 'update' ? 'UPDATE' : 'CREATE'}}</button>
+</div>
+
+
+
