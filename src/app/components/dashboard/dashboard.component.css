@@ -9,3 +9,9 @@
 .sidenav-content-with-padding {
   padding-left: 50px;
 }
+.close-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 9999;
+}
