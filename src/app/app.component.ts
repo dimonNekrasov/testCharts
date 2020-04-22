@@ -18,5 +18,5 @@ export class AppComponent {
     });
   }
 
-  title = 'untitled6';
+  title = 'testCharts';
 }

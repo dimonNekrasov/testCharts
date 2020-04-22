@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FakeDataService} from '../../services/fake-data/fake-data.service';
 import {FakeEvent} from '../../models/fake-event';
 
@@ -11,7 +11,9 @@ export class DashboardComponent implements OnInit {
 
   usersList = [];
   sidenavOpened = false;
-  constructor(private fakeData: FakeDataService) { }
+
+  constructor(private fakeData: FakeDataService) {
+  }
 
   ngOnInit(): void {
     this.fakeData.getUsers().subscribe((response: FakeEvent[]) => {

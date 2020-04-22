@@ -13,10 +13,11 @@ export class AllEventsComponent implements OnInit, OnChanges {
 
   dataSource: MatTableDataSource<FakeEvent>;
   displayedColumns: string[];
-  @Input()data: FakeEvent[];
+  @Input() data: FakeEvent[];
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+
   constructor() {
   }
 

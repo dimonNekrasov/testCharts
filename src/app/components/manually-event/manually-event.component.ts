@@ -39,9 +39,9 @@ export class ManuallyEventComponent implements OnInit {
   }
 
   getUsers() {
-   this.fakeDataService.getUsers().subscribe((response: FakeEvent[]) => {
-     this.usersList = response;
-   });
+    this.fakeDataService.getUsers().subscribe((response: FakeEvent[]) => {
+      this.usersList = response;
+    });
   }
 
   changeGenerationType(event) {

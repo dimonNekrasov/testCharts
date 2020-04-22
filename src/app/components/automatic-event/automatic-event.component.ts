@@ -18,15 +18,15 @@ export class AutomaticEventComponent implements OnInit {
     from: null,
     to: null
   };
-  interval = 1000;
-  repeats = 10;
+  interval = 0;
+  repeats = 0;
   timeout = 0;
   stepsUpdate = [
     {id: 0, eventType: 'login'}
   ];
   stepsCreate = [
     {batchSize: 1, eventType: 'login'}
-  ]
+  ];
   eventsList = [];
   batchLength = 0;
 
@@ -100,7 +100,7 @@ export class AutomaticEventComponent implements OnInit {
   }
 
   addStep() {
-    if (this.currentEventGenerationType.method === 'update'){
+    if (this.currentEventGenerationType.method === 'update') {
       this.stepsUpdate.push({
         id: 0,
         eventType: 'login'
@@ -114,20 +114,14 @@ export class AutomaticEventComponent implements OnInit {
   }
 
   removeStep(index) {
-    // debugger
     if (this.currentEventGenerationType.method === 'update') {
       this.stepsUpdate.splice(index, 1);
     } else {
       this.stepsCreate.splice(index, 1);
     }
   }
-  //
-  // check() {
-  //   console.log(this.steps);
-  // }
 
   generateEvent() {
-    // debugger
     if (this.currentEventGenerationType.method === 'update') {
       if (this.currentEventGenerationType.frequency === 'interval') {
         return this.updateEventWithInterval();

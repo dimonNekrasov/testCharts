@@ -3,7 +3,6 @@ import * as faker from 'faker';
 import {FakeEvent} from '../../models/fake-event';
 import {RandomService} from '../random/random.service';
 import {EVENT_TYPES} from '../../models/event-types';
-import {GeoService} from '../geo/geo.service';
 import {BehaviorSubject} from 'rxjs';
 import {currentCountry} from '../../app.component';
 

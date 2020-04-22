@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RandomService {
 
-  constructor() { }
+  constructor() {
+  }
 
   getRandom(range) {
     return Math.floor(Math.random() * range);

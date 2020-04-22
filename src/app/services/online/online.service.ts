@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {FakeEvent} from '../../models/fake-event';
 
 @Injectable({
@@ -6,7 +6,8 @@ import {FakeEvent} from '../../models/fake-event';
 })
 export class OnlineService {
 
-  constructor() { }
+  constructor() {
+  }
 
   isOnline(evt: FakeEvent) {
     return evt.eventType !== 'logout';
